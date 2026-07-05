@@ -221,13 +221,15 @@ export type Project = {
   name: string;
   category: string;
   image: string;
+  href?: string;
 };
 
 export const projects: Project[] = [
   {
-    name: "Alpha Logística",
-    category: "Site Institucional",
-    image: "/images/portfolio-truck.jpg",
+    name: "Para Criativas",
+    category: "Loja Virtual",
+    image: "/images/portfolio-paracriativas.jpg",
+    href: "https://www.paracriativas.com/",
   },
   {
     name: "Next Solutions",

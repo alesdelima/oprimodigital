@@ -23,10 +23,11 @@ export function Portfolio() {
         <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {projects.map((project, index) => {
             const message = `Olá! Vi o projeto "${project.name}" no site e quero saber mais.`;
+            const href = project.href || buildWhatsappHref(message);
             return (
               <Reveal key={project.name} delay={(index % 4) * 0.08}>
                 <a
-                  href={buildWhatsappHref(message)}
+                  href={href}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group relative block aspect-square overflow-hidden rounded-2xl border border-border"
