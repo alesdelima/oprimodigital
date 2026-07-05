@@ -232,17 +232,17 @@ export const projects: Project[] = [
     href: "https://www.paracriativas.com/",
   },
   {
-    name: "Next Solutions",
+    name: "Em Breve",
     category: "Landing Page",
     image: "/images/portfolio-face.jpg",
   },
   {
-    name: "Urban Fit",
+    name: "Em Breve",
     category: "Site Institucional",
     image: "/images/portfolio-body.jpg",
   },
   {
-    name: "Elevare",
+    name: "Em Breve",
     category: "Site Institucional",
     image: "/images/portfolio-building.jpg",
   },
