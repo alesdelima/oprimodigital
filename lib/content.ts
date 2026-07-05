@@ -128,7 +128,7 @@ export type Plan = {
 export const pricingPlans: Plan[] = [
   {
     name: "Landing Page",
-    price: "R$ 1.490",
+    price: "R$ 599",
     description: "Ideal para quem precisa vender um serviço.",
     features: [
       "Landing Page personalizada",
@@ -141,8 +141,8 @@ export const pricingPlans: Plan[] = [
     cta: "Quero este plano",
   },
   {
-    name: "Site Institucional",
-    price: "R$ 2.490",
+    name: "Site Simples",
+    price: "R$ 1.459",
     description: "A escolha mais frequente para empresas em crescimento.",
     features: [
       "Até 5 páginas",
@@ -160,7 +160,7 @@ export const pricingPlans: Plan[] = [
   },
   {
     name: "Site Premium",
-    price: "R$ 3.990",
+    price: "R$ 3.099",
     priceLead: "A partir de",
     description: "Projeto sob medida para operações mais complexas.",
     features: [
