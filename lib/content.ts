@@ -254,16 +254,10 @@ export const testimonials: {
   quote: string;
 }[] = [
   {
-    name: "Marcos T.",
-    role: "CEO, Alpha Transportes",
+    name: "Loren H.",
+    role: "Criadora do Notas Criativas",
     quote:
       "O Primo Digital entregou mais que um site. Entregou resultado: nossos pedidos por WhatsApp triplicaram no primeiro mês.",
-  },
-  {
-    name: "Juliana R.",
-    role: "Marketing, Next Solutions",
-    quote:
-      "Processo rápido, comunicação clara e um design que finalmente parece da nossa marca. Recomendo sem hesitar.",
   },
 ];
 
