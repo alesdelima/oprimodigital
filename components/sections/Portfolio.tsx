@@ -25,7 +25,7 @@ export function Portfolio() {
             const message = `Olá! Vi o projeto "${project.name}" no site e quero saber mais.`;
             const href = project.href || buildWhatsappHref(message);
             return (
-              <Reveal key={project.name} delay={(index % 4) * 0.08}>
+              <Reveal key={`${project.name}-${index}`} delay={(index % 4) * 0.08}>
                 <a
                   href={href}
                   target="_blank"
