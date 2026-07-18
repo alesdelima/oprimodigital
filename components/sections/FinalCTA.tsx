@@ -16,6 +16,10 @@ export function FinalCTA() {
       />
       <div className="absolute inset-0 bg-black/70" aria-hidden="true" />
       <div
+        className="absolute inset-0 bg-primary/20 mix-blend-overlay"
+        aria-hidden="true"
+      />
+      <div
         className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/30"
         aria-hidden="true"
       />
