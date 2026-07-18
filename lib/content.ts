@@ -239,7 +239,7 @@ export const projects: Project[] = [
   {
     name: "Luciana Personalité",
     category: "Site Institucional",
-    image: "/images/portfolio-body.jpg",
+    image: "/images/portfolio-luciana-personalite.jpg",
     href: "https://oprimodigital.com/proposta-luciana-personalite/#areas",
   },
   {
