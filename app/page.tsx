@@ -3,7 +3,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
 import { StatsBar } from "@/components/sections/StatsBar";
 import { Services } from "@/components/sections/Services";
-import { Differentials } from "@/components/sections/Differentials";
+import { CoffeeBreak } from "@/components/sections/CoffeeBreak";
 import { Pricing } from "@/components/sections/Pricing";
 import { Hosting } from "@/components/sections/Hosting";
 import { Portfolio } from "@/components/sections/Portfolio";
@@ -19,7 +19,7 @@ export default function Home() {
         <Hero />
         <StatsBar />
         <Services />
-        <Differentials />
+        <CoffeeBreak />
         <Pricing />
         <Hosting />
         <Portfolio />
