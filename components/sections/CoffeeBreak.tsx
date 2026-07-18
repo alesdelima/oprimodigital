@@ -21,6 +21,9 @@ export function CoffeeBreak() {
   const framesRef = useRef<HTMLImageElement[]>([]);
   const reducedMotion = useReducedMotion();
 
+  // framesRef segura as instâncias de Image para elas não serem coletadas
+  // antes de o browser cachear os frames — sem isso a troca de src no scroll
+  // poderia disparar novas requisições.
   useEffect(() => {
     framesRef.current = Array.from({ length: FRAME_COUNT }, (_, i) => {
       const img = new window.Image();

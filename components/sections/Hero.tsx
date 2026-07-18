@@ -11,9 +11,11 @@ import {
 } from "framer-motion";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { SplitText } from "@/components/motion/SplitText";
 import { hero, whatsappHref } from "@/lib/content";
 
 const FRAME_COUNT = 30;
+const SCRUB_SPEED = 1.6; // >1 = passa os frames mais rápido por pixel rolado
 
 function frameSrc(index: number) {
   return `/frames/hero/frame-${String(index + 1).padStart(2, "0")}.jpg`;
@@ -35,7 +37,10 @@ function drawCover(
   ctx.drawImage(img, dx, dy, drawWidth, drawHeight);
 }
 
-function useFrameScrub(sectionRef: React.RefObject<HTMLElement | null>) {
+function useFrameScrub(
+  sectionRef: React.RefObject<HTMLElement | null>,
+  disabled: boolean
+) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const framesRef = useRef<HTMLImageElement[]>([]);
   const currentIndexRef = useRef(0);
@@ -59,6 +64,7 @@ function useFrameScrub(sectionRef: React.RefObject<HTMLElement | null>) {
 
   // Pré-carrega todos os frames; desenha o corrente assim que carregar.
   useEffect(() => {
+    if (disabled) return;
     framesRef.current = Array.from({ length: FRAME_COUNT }, (_, i) => {
       const img = new window.Image();
       img.src = frameSrc(i);
@@ -73,7 +79,7 @@ function useFrameScrub(sectionRef: React.RefObject<HTMLElement | null>) {
       window.removeEventListener("resize", onResize);
       cancelAnimationFrame(rafRef.current);
     };
-  }, [draw]);
+  }, [draw, disabled]);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -81,9 +87,11 @@ function useFrameScrub(sectionRef: React.RefObject<HTMLElement | null>) {
   });
 
   useMotionValueEvent(scrollYProgress, "change", (progress) => {
+    if (disabled) return;
+    const sped = Math.min(1, progress * SCRUB_SPEED);
     const index = Math.min(
       FRAME_COUNT - 1,
-      Math.max(0, Math.floor(progress * FRAME_COUNT))
+      Math.max(0, Math.floor(sped * FRAME_COUNT))
     );
     if (index === currentIndexRef.current) return;
     currentIndexRef.current = index;
@@ -113,7 +121,7 @@ const item: Variants = {
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const reducedMotion = useReducedMotion();
-  const canvasRef = useFrameScrub(sectionRef);
+  const canvasRef = useFrameScrub(sectionRef, !!reducedMotion);
 
   return (
     <section
@@ -129,13 +137,15 @@ export function Hero() {
         sizes="100vw"
         className="object-cover object-[55%_50%]"
       />
-      {!reducedMotion && (
-        <canvas
-          ref={canvasRef}
-          aria-hidden="true"
-          className="absolute inset-0 size-full"
-        />
-      )}
+      {/* Sempre no DOM (SSR e cliente rendem igual — evita mismatch de
+          hidratação para quem usa prefers-reduced-motion); com movimento
+          reduzido o scrub é desativado no hook e o canvas fica transparente,
+          deixando visível só o frame estático acima. */}
+      <canvas
+        ref={canvasRef}
+        aria-hidden="true"
+        className="absolute inset-0 size-full"
+      />
 
       <div
         className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background via-background/45 to-transparent"
@@ -163,9 +173,9 @@ export function Hero() {
             variants={item}
             className="font-display text-4xl font-semibold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl"
           >
-            {hero.titleLine1}
+            <SplitText text={hero.titleLine1} />
             <br />
-            <span className="glow-text text-primary">{hero.titleLine2}</span>
+            <SplitText text={hero.titleLine2} className="glow-text text-primary" />
           </motion.h1>
           <motion.p
             variants={item}
