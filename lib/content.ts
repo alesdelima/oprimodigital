@@ -237,9 +237,10 @@ export const projects: Project[] = [
     image: "/images/portfolio-face.jpg",
   },
   {
-    name: "Em Breve",
+    name: "Luciana Personalité",
     category: "Site Institucional",
     image: "/images/portfolio-body.jpg",
+    href: "https://oprimodigital.com/proposta-luciana-personalite/#areas",
   },
   {
     name: "Em Breve",
